@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Wira & Sueni</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="overflow-hidden bg-black">
+
+    <div id="loader">
+        <div class="slideshow-container">
+            <img src="img/f1.jpg" class="slide active" alt="Wedding photo 1">
+            <img src="img/f2.jpg" class="slide" alt="Wedding photo 2">
+            <img src="img/f3.jpg" class="slide" alt="Wedding photo 3">
+            <img src="img/f4.jpg" class="slide" alt="Wedding photo 4">
+            <img src="img/FIX/DSC_0850.jpg" class="slide" alt="Wedding photo 5">
+            <img src="img/FIX/DPH_8000.jpg" class="slide" alt="Wedding photo 6">
+            <img src="img/FIX/DPH_8194.jpg" class="slide" alt="Wedding photo 7">
+        </div>  
+        <div id="progress">0%</div>
+        <p class="text-xs tracking-widest mt-2 uppercase text-stone-500">Mempersiapkan Kebahagiaan</p>
+    </div>
+
+    <div id="cover" class="hidden items-center justify-center min-h-screen bg-cover bg-center cover-bg">
+        <div class="text-center px-4 flex flex-col justify-between min-h-[60vh]">
+            
+            <div>
+                <p class="tracking-[0.3em] text-white text-sm mb-4 uppercase reveal">The Wedding of</p>
+                <h1 class="font-aesthetic text-6xl md:text-8xl text-white reveal delay-1">Wira & Sueni</h1>
+            </div>
+
+            <div class="mt-20">
+                <div class="text-white mb-6">
+                    <p class="text-sm tracking-widest mb-2 reveal delay-2">KEPADA YTH.</p>
+                    <h2 id="guest-name" class="text-sm tracking-widest font-semibold italic reveal delay-2">Nama Tamu Undangan</h2>
+                </div>
+                
+                <a href="#" id="btn-open-link" class="btn-open reveal delay-3">
+                    Open Invitation
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 1. Ambil parameter dari URL (untuk Nama Tamu)
+        const urlParams = new URLSearchParams(window.location.search);
+        const namaTamu = urlParams.get('to');
+        const btnOpen = document.getElementById('btn-open-link');
+
+        if (namaTamu) {
+            const namaBersih = decodeURIComponent(namaTamu.replace(/[+]/g, ' ')); 
+            document.getElementById('guest-name').innerText = namaBersih;
+            // Teruskan parameter 'to' ke halaman undangan.html
+            btnOpen.href = `undangan.html?to=${encodeURIComponent(namaTamu)}&play=true`;
+        } else {
+            btnOpen.href = `undangan.html?play=true`;
+        }
+
+        // 2. Logika Loader
+        let prog = 0;
+        let sIdx = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        const loadTimer = setInterval(() => {
+            prog += 1;
+            document.getElementById('progress').innerText = prog + '%';
+            
+            if (prog % 20 === 0) {
+                slides[sIdx].classList.remove('active');
+                sIdx = (sIdx + 1) % slides.length;
+                slides[sIdx].classList.add('active');
+            }
+
+            if (prog >= 100) {
+                clearInterval(loadTimer);
+                document.getElementById('loader').style.display = 'none';
+                
+                // Munculkan Cover
+                const cover = document.getElementById('cover');
+                cover.classList.remove('hidden');
+                cover.classList.add('flex');
+
+                // 3. Trigger Reveal secara manual setelah loader selesai
+                setTimeout(() => {
+                    document.querySelectorAll('.reveal').forEach(el => {
+                        el.classList.add('active');
+                    });
+                }, 100);
+            }
+        }, 50);
+    </script>
+</body>
+</html>

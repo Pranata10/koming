@@ -1,0 +1,1019 @@
+@font-face {
+    font-family: 'OrangeAvenue';
+    src: url('fonts/Orange Avenue DEMO.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Kugile';
+    src: url('fonts/Kugile_Demo.ttf') format('truetype'); /* Gunakan truetype untuk .ttf */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Opsional: Mempercepat loading teks */
+}
+@font-face {
+    font-family: 'Qris';
+    src: url('fonts/QrisMagic-Regular.ttf') format('truetype'); /* Gunakan truetype untuk .ttf */
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap; /* Opsional: Mempercepat loading teks */
+}
+
+body,html{
+    margin:0;
+    padding:0;
+    height:100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow: auto;
+}
+/* Untuk Chrome, Safari, Edge */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Untuk Firefox */
+@supports (scrollbar-width: none) {
+  html {
+    scrollbar-width: none;
+  }
+}
+
+/* Untuk IE/Edge lama */
+body {
+  -ms-overflow-style: none;
+}
+
+
+#loader{
+    position:fixed;
+    inset:0;
+    background:#000;
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+    z-index:50;
+}
+.slideshow-container{
+    width:100px;
+    height:100px;
+    overflow:hidden;
+    border-radius:100%;
+}
+.slide{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:none;
+}
+.slide.active{
+    display:block;
+}
+
+#cover{
+    position: relative;          /* ❌ jangan fixed lagi */
+    inset: 0;
+    height:100vh;                /* ⬅️ jadi 1 layar saja */
+    background:
+      linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+      url(img/h1.jpg) center/cover no-repeat;
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items:center;
+    padding-top: 80px;
+    z-index:10;                  /* turunkan biar aman */
+}
+
+
+/* ---- TEXT ---- */
+#cover .text-center{
+    position: relative;
+    color: white;
+}
+
+/* "THE WEDDING OF" */
+#cover p{
+    letter-spacing: .3em;
+    font-size: 12px;
+    color: #E5E7EB; /* abu putih lembut */
+}
+
+/* Nama pasangan */
+#cover h1{
+    font-family: 'Qris', sans-serif !important;
+    font-size: 45px;
+    color: white;
+    font-weight: 400;
+}
+
+.btn-open{
+    margin-top: 400px;
+    padding: 10px 26px;
+    border-radius: 999px;
+    border: 2px #ffffff;
+    background: rgba(255,255,255,0.1);
+    color: #ffffff;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    font-weight: 200;
+    cursor: pointer;
+    transition: .3s;
+}
+.btn-open:hover{
+    transform: scale(1.2);
+    background: rgba(255,255,255,.2);
+}
+
+
+.video-section{
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Container section */
+.video-section{
+    position: relative;
+    width:100%;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* Video */
+.bg-video{
+    position:absolute;
+    top:50%;
+    left:50%;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transform:translate(-50%, -50%);
+    z-index:1;
+}
+
+/* Overlay gelap biar tulisan jelas */
+.video-section::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.55);
+    z-index:2;
+}
+
+/* Text */
+.video-overlay{
+    position:relative;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+    z-index:3;
+}
+
+.video-overlay .subtitle{
+    letter-spacing:.3em;
+    font-size:12px;
+    margin-bottom:10px;
+    opacity:.9;
+}
+
+.video-overlay .title{
+    font-family: 'Qris', sans-serif !important;
+    font-size:55px;
+    font-weight:500;
+}
+
+.scroll-btn{
+    position:absolute;
+    bottom:200px;
+    left:50%;
+    transform:translateX(-50%);
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    border:2px solid white;
+    background:rgba(255,255,255,0.1);
+    color:white;
+    font-size:18px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    transition:.3s;
+    z-index:8;           /* 🔥 penting */
+}
+
+
+.scroll-btn:hover{
+    background:white;
+    color:black;
+}
+
+.swastyastu-section p{
+    margin-top: 0;
+}
+
+.swastyastu-section{
+    width:100%;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+         url('img/s1.jpg') center/cover no-repeat;
+    position:relative;
+}
+
+
+
+.swastyastu-overlay{
+    position:relative;
+    max-width:700px;
+    width:90%;
+    color:white;
+    padding-bottom:2px;
+    align-items:flex-end;
+}
+
+/* Om Swastyastu */
+.swastyastu-greet{
+    font-family: 'Times New Roman', Times, serif;
+    color: #E5E7EB;
+    font-size:50px;
+    margin-bottom:70px;
+    text-align:left;
+}
+
+/* Ayat Weeda */
+.swastyastu-text{
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    font-size:15px;
+    line-height:1.8;
+    text-align:left;
+}
+
+.groom-bg-section{
+    position:relative;
+    width:100%;
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('img/FIX/koming.jpg') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.groom-bg-overlay{
+    position:relative;
+    text-align:center;
+    color:white;
+    max-width:650px;
+}
+
+/* text */
+.groom-subtitle{
+    letter-spacing:.18em;
+    font-size:12px;
+    opacity:.8;
+    margin-bottom:6px;
+}
+
+.groom-title{
+    font-family:"Playfair Display", serif;
+    font-size:26px;
+    margin-bottom:10px;
+}
+
+.groom-desc{
+    font-size:14px;
+    line-height:1.7;
+    opacity:.9;
+}
+
+.groom-bg-section2{
+    position:relative;
+    width:100%;
+    height:100vh;
+    background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('img/FIX/suweni.jpg') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.groom-bg-overlay2{
+    position:relative;
+    text-align:center;
+    color:white;
+    max-width:650px;
+}
+
+/* text */
+.groom-subtitle2{
+    letter-spacing:.18em;
+    font-size:12px;
+    opacity:.8;
+    margin-bottom:6px;
+}
+
+.groom-title2{
+    font-family:"Playfair Display", serif;
+    font-size:26px;
+    margin-bottom:10px;
+}
+
+.groom-desc2{
+    font-size:14px;
+    line-height:1.7;
+    opacity:.9;
+}
+
+/* SECTION WRAPPER */
+.location-section-v2 {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 20px;
+}
+
+.video-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.video-darkener {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Lebih gelap sedikit agar text menonjol */
+    z-index: 2;
+}
+
+/* HEADER AREA */
+.title-area {
+    text-align: center;
+    margin-bottom: 60px;
+    color: white;
+}
+
+.top-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6em;
+    display: block;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.main-title {
+    font-family: serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+}
+
+/* CARDS LAYOUT */
+.cards-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1100px;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.event-card-v2 {
+    position: relative;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    border-radius: 2px; /* Hampir kotak sempurna */
+    transition: 0.5s ease;
+}
+
+/* Aksen Garis Modern */
+.card-accent {
+    position: absolute;
+    left: 0;
+    top: 20%;
+    height: 60%;
+    width: 3px;
+    background: white; /* Garis vertikal putih sebagai aksen */
+    opacity: 0.5;
+}
+
+.event-card-v2:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.event-card-v2:hover .card-accent {
+    height: 100%;
+    top: 0;
+    opacity: 1;
+}
+
+/* TEXT INSIDE CARD */
+.event-type {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 15px;
+}
+
+.event-date-v2 {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 200;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.address-text {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    margin-top: 15px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 300;
+}
+.event-info {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+    margin-top: 10px;
+}
+/* BUTTON MINIMAL */
+.btn-minimal {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 0;
+    color: white;
+    text-decoration: none;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    transition: 0.3s;
+}
+
+.btn-minimal:hover {
+    border-bottom: 1px solid white;
+    letter-spacing: 0.3em;
+}
+
+@media (max-width: 768px) {
+    .event-card-v2 {
+        padding: 30px;
+    }
+    .event-date-v2 {
+        font-size: 1.8rem;
+    }
+}
+
+
+/* COUNTDOWN SECTION */
+.countdown-section {
+    position: relative;
+    width: 100%;
+    /* Gunakan min-height agar tidak terpotong di layar HP */
+    min-height: 100vh; 
+    
+    /* Gunakan properti terpisah untuk keamanan browser */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/FIX/DPH_8351.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    /* Perbaikan Flexbox */
+    display: flex;
+    flex-direction: column; /* Agar konten tersusun ke bawah */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 40px 20px; /* Tambahkan padding agar tidak mepet layar HP */
+}
+
+.countdown-grid {
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* Jarak yang lebih rapat terlihat lebih modern */
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+.countdown-item {
+    background: rgba(255, 255, 255, 0.05); /* Sangat tipis (glassmorphism) */
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 25px 15px;
+    border-radius: 4px; /* Sudut sedikit tegas lebih modern daripada bulat sempurna */
+    min-width: 90px;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Tambahkan efek hover halus */
+.countdown-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-5px);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.countdown-item .number {
+    display: block;
+    font-size: 2.5rem; /* Ukuran lebih besar */
+    font-weight: 200;  /* Angka tipis terlihat lebih elegan */
+    line-height: 1;
+    margin-bottom: 8px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Pastikan pakai sans-serif modern */
+}
+
+.countdown-item .label {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em; /* Spasi antar huruf lebar = Elegan */
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+}
+
+/* Tambahkan dekorasi garis pada judul agar lebih manis */
+.countdown-title {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.5em; /* Kunci kemewahan ada di spasi ini */
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Tambahkan garis tipis di kiri dan kanan */
+.countdown-title::before,
+.countdown-title::after {
+    content: "";
+    height: 1px;
+    width: 30px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+
+/* Update pada Section Utama */
+.gift-section {
+    position: relative;
+    width: 100%;
+    /* Menggunakan min-height agar tidak terpotong di layar HP jika konten panjang */
+    min-height: 100vh; 
+    
+    /* Properti background sesuai permintaan */
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/FIX/DSC_0736.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    /* Setup Flexbox */
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.container-gift {
+    width: 100%;
+    max-width: 900px;
+    z-index: 2;
+}
+
+.gift-title {
+    font-family: 'Serif', serif;
+    font-size: 2rem; /* Ukuran diperkecil agar muat */
+    color: #ffffff;
+    margin-bottom: 0.5rem; /* Margin dipersempit */
+}
+
+.gift-subtitle {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
+    max-width: 500px;
+    margin: 0 auto 1.5rem; /* Jarak ke kartu dikurangi */
+}
+
+.gift-grid {
+    display: flex; /* Menggunakan flex agar lebih mudah dikontrol */
+    flex-direction: column;
+    gap: 1rem; /* Jarak antar kartu */
+    width: 100%;
+    align-items: center;
+}
+
+.gift-card {
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); /* Efek kaca asli */
+    padding: 20px; /* Padding kartu diperkecil drastis agar muat */
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    width: 100%;
+    max-width: 350px; /* Membatasi lebar kartu */
+    transition: 0.3s;
+}
+
+.bank-logo {
+    height: 25px; /* Ukuran logo diperkecil */
+    filter: brightness(0) invert(1);
+    margin-bottom: 1rem;
+}
+
+.account-number {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.account-name {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1rem;
+}
+
+/* Tombol Salin agar lebih compact */
+.btn-copy {
+    background: white;
+    color: black;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Penyesuaian untuk Layar Desktop (Landscape) */
+@media (min-width: 768px) {
+    .gift-grid {
+        flex-direction: row; /* Kartu jadi bersampingan di laptop */
+        justify-content: center;
+        gap: 2rem;
+    }
+    .gift-title { font-size: 2.8rem; }
+}
+
+/* Tombol Copy Modern */
+.btn-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    color: #333;
+    padding: 12px 28px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.btn-copy:hover {
+    background: #f0f0f0;
+    transform: scale(1.05);
+}
+
+.btn-copy:active {
+    transform: scale(0.98);
+}
+
+.icon-copy {
+    width: 18px;
+    height: 18px;
+}
+.gallery-section {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center; 
+    align-items: center; /* Memastikan galeri di tengah layar */
+    background-color: #000;
+}
+
+.bg-video1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.video-overlay1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Menggelapkan video agar foto menonjol */
+    z-index: 1;
+}
+
+.gallery-grid {
+    display: flex;
+    width: 90vw; /* Hampir memenuhi lebar layar */
+    height: 80vh; /* Hampir memenuhi tinggi layar */
+    overflow-x: auto; 
+    scroll-snap-type: x mandatory; 
+    scroll-behavior: smooth;
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    user-select: none;
+    position: relative; 
+    z-index: 10; /* Di atas video & overlay */
+    border-radius: 5px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+}
+
+.gallery-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.gallery-item {
+    flex: 0 0 100%; /* Memaksa satu item memenuhi satu lebar grid */
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: start;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Foto tetap proporsional memenuhi area */
+}
+
+/* Tombol Navigasi */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.3);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 50; /* Harus paling depan */
+    font-size: 24px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* 3. Judul Editorial */
+.gallery-header {
+    position: absolute;
+    top: 15%;
+    width: 100%;
+    z-index: 20;
+    text-align: center;
+}
+
+.gallery-title {
+    font-size: clamp(1rem, 6vw, 3.5rem);
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.2em; /* Sangat lebar untuk kesan high-end */
+    color: #fff;
+    text-shadow: 0 15px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 60px;
+}
+
+/* Garis tipis mewah di bawah judul */
+.gallery-title::after {
+    content: "";
+    display: block;
+    width: 150px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    margin: 20px auto 0;
+}
+/* SECTION TERIMA KASIH */
+.thanks-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #000;
+}
+
+.thanks-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.thanks-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.6); /* Menggelapkan foto agar teks terbaca */
+}
+
+.thanks-overlay {
+    position: relative;
+    z-index: 10;
+    color: white;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.6) 100%);
+}
+
+.thanks-greet {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    line-height: 1.6;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.thanks-title {
+    font-family: 'OrangeAvenue', serif; /* Menggunakan font yang Anda pilih tadi */
+    font-size: clamp(3rem, 10vw, 5rem);
+    margin-bottom: 10px;
+}
+
+.thanks-names {
+    font-size: 1.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    font-weight: 300;
+}
+
+/* BRANDING STYLE */
+.thanks-overlay {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Memastikan semua isi di tengah secara horizontal */
+    justify-content: center;
+    position: relative;
+    height: 100%;
+}
+.branding-voluntaz {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0.8;
+    transition: 0.3s;
+}
+
+.branding-voluntaz:hover {
+    opacity: 1;
+}
+
+.branding-voluntaz p {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.branding-voluntaz a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.voluntaz-logo {
+    height: 30px; /* Sesuaikan tinggi logo Anda */
+    width: auto;
+    filter: brightness(0) invert(1); /* Membuat logo berwarna putih jika logo aslinya hitam */
+}
+
+.branding-voluntaz span {
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.branding-voluntaz.reveal {
+    left: 50%;
+    /* Menggabungkan centering horizontal (-50%) dan animasi vertikal (20px) */
+    transform: translateX(-50%) translateY(20px); 
+    opacity: 0;
+}
+
+.branding-voluntaz.reveal.active {
+    /* Tetap pertahankan -50% saat aktif */
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.8;
+}
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .thanks-greet { font-size: 0.9rem; }
+    .thanks-title { font-size: 3.5rem; }
+    .branding-voluntaz { bottom: 20px; }
+}
+/* --- ANIMASI REVEAL --- */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1.2s cubic-bezier(0.5, 0, 0, 1);
+    will-change: transform, opacity;
+}
+
+/* Kondisi saat elemen masuk ke layar */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Variasi delay agar teks muncul bergantian */
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+.delay-3 { transition-delay: 0.6s; }
+
+/* Variasi animasi dari samping untuk elemen tertentu */
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 1.2s ease-out;
+}
+.reveal-left.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+/* Cari class .scroll-btn Anda dan pastikan reveal-nya seperti ini */
+.scroll-btn.reveal {
+    left: 50%;
+    /* Menggabungkan X (untuk tengah) dan Y (untuk animasi muncul) */
+    transform: translateX(-50%) translateY(30px); 
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.scroll-btn.reveal.active {
+    /* Tetap tahan -50% agar tetap di tengah saat muncul */
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
