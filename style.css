@@ -664,8 +664,8 @@ body {
     }
 
     .countdown-item {
-        min-width: 75px; /* Perkecil ukuran kotak */
-        padding: 15px 10px;
+        min-width: 65px; /* Perkecil ukuran kotak */
+        padding: 10px 15px;
     }
 
     .countdown-item .number {
