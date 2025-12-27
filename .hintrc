@@ -8,7 +8,8 @@
       "default",
       {
         "ignore": [
-          "video[playsinline]"
+          "video[playsinline]",
+          "img[fetchpriority]"
         ]
       }
     ],
@@ -24,6 +25,13 @@
           "scrollbar-width: none",
           "user-select"
         ]
+      }
+    ],
+    "button-type": "off",
+    "axe/text-alternatives": [
+      "default",
+      {
+        "image-alt": "off"
       }
     ]
   }

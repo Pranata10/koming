@@ -72,59 +72,127 @@ body {
     display:block;
 }
 
-#cover{
-    position: relative;          /* ❌ jangan fixed lagi */
-    inset: 0;
-    height:100vh;                /* ⬅️ jadi 1 layar saja */
-    background:
+#cover {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* Ganti background url sesuai path Anda */
+    background: 
       linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-      url(img/h1.jpg) center/cover no-repeat;
-    display:flex;
+      url('img/h1.jpg') center/cover no-repeat;
+    
+    /* Flexbox untuk menengahkan konten */
+    display: flex;
     flex-direction: column;
-    justify-content:flex-start;
-    align-items:center;
-    padding-top: 80px;
-    z-index:10;                  /* turunkan biar aman */
+    justify-content: center; /* ⬅️ Vertikal Tengah */
+    align-items: center;     /* ⬅️ Horizontal Tengah */
+    
+    text-align: center;
+    z-index: 10;
 }
 
-
-/* ---- TEXT ---- */
-#cover .text-center{
-    position: relative;
-    color: white;
+/* Container teks agar memiliki jarak yang manis */
+#cover .text-center {
+    display: flex;
+    flex-direction: column;
+    gap: 60px; /* Jarak antar elemen (p, h1, dan info tamu) */
+    padding: 0 20px;
+    z-index: 2;
 }
 
 /* "THE WEDDING OF" */
-#cover p{
+#cover p {
     letter-spacing: .3em;
     font-size: 12px;
-    color: #E5E7EB; /* abu putih lembut */
+    color: #E5E7EB;
+    text-transform: uppercase;
+    margin-bottom: 15px; /* Jarak ke nama mempelai */
 }
 
 /* Nama pasangan */
-#cover h1{
+#cover h1 {
     font-family: 'Qris', sans-serif !important;
     font-size: 45px;
     color: white;
     font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 10px; /* Jarak ke elemen di bawahnya */
+}
+.guest-name {
+    display: block !important; /* Memastikan elemen tidak tersembunyi */
+    font-size: 1.2rem;
+    font-style: italic;
+    font-weight: 600;
+    color: #ffffff;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    min-height: 1.5em; /* Menjaga ruang agar tidak collapse jika kosong */
+    margin-top: 15px;    /* Jarak dari teks "KEPADA YTH" */
+    margin-bottom: 40px; /* Jarak ke Tombol Open Invitation */
 }
 
-.btn-open{
-    margin-top: 400px;
-    padding: 10px 26px;
-    border-radius: 999px;
-    border: 2px #ffffff;
-    background: rgba(255,255,255,0.1);
+/* Styling Dasar Tombol */
+.btn-open {
+    display: inline-block;
+    padding: 4px 24px;
+    background-color: transparent;
     color: #ffffff;
+    border-radius: 50px; /* Membuat bentuk kapsul/lonjong */
+    border: 1px solid rgba(255, 255, 255, 0.8);
     font-size: 13px;
-    letter-spacing: 0.12em;
-    font-weight: 200;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
     cursor: pointer;
-    transition: .3s;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+    outline: none;
+    /* Animasi berdenyut halus saat diam */
+    animation: pulse-border 1s infinite;
 }
-.btn-open:hover{
-    transform: scale(1.2);
-    background: rgba(255,255,255,.2);
+
+/* Efek Hover: Latar Belakang Putih & Teks Hitam */
+.btn-open:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border-color: #ffffff;
+    transform: translateY(-2px); /* Tombol sedikit naik */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Efek saat tombol diklik */
+.btn-open:active {
+    transform: translateY(0);
+}
+
+/* Animasi Pulse Border */
+@keyframes pulse-border {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+/* Responsif untuk Mobile */
+@media (max-width: 480px) {
+    .btn-open {
+        padding: 10px 24px;
+        font-size: 11px;
+    }
+}
+
+/* Responsif Desktop */
+@media (min-width: 768px) {
+    #cover h1 {
+        font-size: 80px;
+    }
 }
 
 
@@ -228,7 +296,7 @@ body {
     justify-content:center;
     background:
         linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-         url('img/s1.jpg') center/cover no-repeat;
+         url('img/FIX/DSC_0101.jpg') center/cover no-repeat;
     position:relative;
 }
 
@@ -587,6 +655,39 @@ body {
     background: rgba(255, 255, 255, 0.3);
 }
 
+/* --- Penyesuaian Responsif --- */
+
+/* Tablet & Mobile (Layar di bawah 768px) */
+@media (max-width: 768px) {
+    .countdown-grid {
+        gap: 10px; /* Jarak kotak lebih rapat di HP */
+    }
+
+    .countdown-item {
+        min-width: 75px; /* Perkecil ukuran kotak */
+        padding: 15px 10px;
+    }
+
+    .countdown-item .number {
+        font-size: 1.8rem; /* Perkecil ukuran angka */
+    }
+
+    .countdown-item .label {
+        font-size: 0.55rem;
+        letter-spacing: 0.15em;
+    }
+
+    .countdown-title {
+        font-size: 0.7rem;
+        letter-spacing: 0.3em;
+        gap: 10px;
+    }
+
+    .countdown-title::before,
+    .countdown-title::after {
+        width: 15px; /* Pendekkan garis dekorasi */
+    }
+}
 
 /* Update pada Section Utama */
 .gift-section {
@@ -596,7 +697,7 @@ body {
     min-height: 100vh; 
     
     /* Properti background sesuai permintaan */
-    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/FIX/DSC_0736.jpg');
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('img/s1.jpg');
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1017,3 +1118,22 @@ body {
     opacity: 1;
 }
 
+/* Animasi Keluar untuk Cover */
+.cover-section.transition-out {
+    pointer-events: none;
+    opacity: 0;
+    transform: scale(1.1); /* Efek zoom masuk saat menghilang */
+    filter: blur(10px);    /* Efek blur transisi */
+    transition: all 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+/* Base style untuk main invitation agar bisa dianimasikan */
+#main-invitation {
+    transition: opacity 1s ease;
+}
+
+/* Perbaikan agar konten di bawah tidak 'melompat' */
+body.overflow-hidden {
+    height: 100vh;
+    overflow: hidden;
+}
